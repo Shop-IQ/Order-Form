@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Order Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+<div class="order-form-container">
+    <h2>Place Your Order</h2>
+    <form id="orderForm">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" required placeholder="Enter your name">
+
+        <label for="product">Product:</label>
+        <input type="text" id="product" name="product" required placeholder="Enter product name">
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" required placeholder="Enter quantity">
+
+        <label for="message">Additional Notes (Optional):</label>
+        <textarea id="message" name="message" placeholder="Enter any additional notes or instructions" rows="4"></textarea>
+
+        <button type="submit">Place Order via WhatsApp</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('orderForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Get the values from the form
+        const name = encodeURIComponent(document.getElementById('name').value);
+        const product = encodeURIComponent(document.getElementById('product').value);
+        const quantity = encodeURIComponent(document.getElementById('quantity').value);
+        const message = encodeURIComponent(document.getElementById('message').value);
+// WhatsApp API link (replace with your own WhatsApp number)
+        const phoneNumber = '94704551775'; // Replace with your WhatsApp number, including country code
+        const whatsappMessage = `Hello,%20I%20want%20to%20order%20the%20following:%0AName:%20name{product}%0AQuantity:%20quantity{message}`;
+
+        // Create the WhatsApp URL
+        const whatsappLink = `https://wa.me/94704551775?text={whatsappMessage}`;
+
+        // Open WhatsApp with pre-filled message
+        window.open(whatsappLink, '_blank');
+    });
+</script>
+
+</body>
+</html>
